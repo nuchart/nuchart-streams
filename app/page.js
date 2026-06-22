@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+import Image from "next/image";
 import { getDashboardData } from "../lib/sheets";
 
 function formatNumber(value) {
@@ -13,6 +14,26 @@ function formatNumber(value) {
 
   return Number(cleanValue).toLocaleString("en-US");
 }
+
+const singleCovers = {
+  "Crolatte 2.0": "/covers/crolatte.jpg",
+  "Hilang": "/covers/hilang.jpg",
+  "Sekarang, Esok, Selamanya": "/covers/sekarang-esok-selamanya.jpg",
+  "Kagum": "/covers/kagum.jpg",
+  "Perisai": "/covers/perisai.jpg",
+  "Perisai (Acoustic)": "/covers/perisai-accoustic.jpg",
+  "Lost Stars": "/covers/lost-stars.jpg",
+};
+
+const collabCovers = {
+  "Aku Yang Salah": "/covers/aku-yang-salah.jpg",
+  "Janji Kita": "/covers/janji-kita.jpg",
+  "Meant 2 Be": "/covers/meant-2-be.jpg",
+  "Benih": "/covers/benih.jpg",
+  "Meant 2 Be (Stripped)": "/covers/meant-2-be-stripped.jpg",
+  "Taklukkan Takut (Accoustic)": "/covers/taklukkan-takut-accoustic.jpg",
+  "Taklukkan Takut": "/covers/taklukkan-takut.jpg",
+};
 
 function TrendDot(value) {
   const trend = value?.toString().toUpperCase();
@@ -113,25 +134,79 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-3 gap-4 mb-12">
 
+          {/* EUNOIA */}
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">Eunoia</p>
-            <h2 className="text-3xl font-bold mt-2">
-              {formatNumber(totalEunoia)}
-            </h2>
+            <div className="flex items-center gap-4">
+
+              <Image
+                src="/covers/eunoia.jpg"
+                alt="Eunoia"
+                width={70}
+                height={70}
+                className="rounded-xl"
+              />
+
+              <div>
+                <p className="text-zinc-400">
+                  Eunoia
+                </p>
+
+                <h2 className="text-2xl font-bold mt-1">
+                  {formatNumber(totalEunoia)}
+                </h2>
+              </div>
+
+            </div>
           </div>
 
+          {/* SINGEL */}
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">Singel</p>
-            <h2 className="text-3xl font-bold mt-2">
-              {formatNumber(totalSingel)}
-            </h2>
+            <div className="flex items-center gap-4">
+
+              <Image
+                src="/covers/singel.jpg"
+                alt="Singel"
+                width={70}
+                height={70}
+                className="rounded-xl"
+              />
+
+              <div>
+                <p className="text-zinc-400">
+                  Singel
+                </p>
+
+                <h2 className="text-2xl font-bold mt-1">
+                  {formatNumber(totalSingel)}
+                </h2>
+              </div>
+
+            </div>
           </div>
 
+          {/* COLLABS */}
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">Collabs</p>
-            <h2 className="text-3xl font-bold mt-2">
-              {formatNumber(totalCollabs)}
-            </h2>
+            <div className="flex items-center gap-4">
+
+              <Image
+                src="/covers/collabs.jpg"
+                alt="Collabs"
+                width={70}
+                height={70}
+                className="rounded-xl"
+              />
+
+              <div>
+                <p className="text-zinc-400">
+                  Collabs
+                </p>
+
+                <h2 className="text-2xl font-bold mt-1">
+                  {formatNumber(totalCollabs)}
+                </h2>
+              </div>
+
+            </div>
           </div>
 
         </div>
@@ -150,7 +225,6 @@ export default async function Home() {
               <table className="w-full text-sm">
                 <thead className="bg-zinc-800">
                   <tr>
-                    <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
                     <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
@@ -163,10 +237,23 @@ export default async function Home() {
                       key={index}
                       className="border-t border-zinc-800"
                     >
-                      <td className="p-3">{index + 1}</td>
 
                       <td className="p-3">
-                        {data[row]?.[5]}
+                        <div className="flex items-center gap-3">
+
+                          <Image
+                            src="/covers/eunoia.jpg"
+                            alt="Eunoia"
+                            width={40}
+                            height={40}
+                            className="rounded-md"
+                          />
+
+                          <span>
+                            {data[row]?.[5]}
+                          </span>
+
+                        </div>
                       </td>
 
                       <td className="p-3 text-right">
@@ -198,7 +285,6 @@ export default async function Home() {
               <table className="w-full text-sm">
                 <thead className="bg-zinc-800">
                   <tr>
-                    <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
                     <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
@@ -211,10 +297,24 @@ export default async function Home() {
                       key={index}
                       className="border-t border-zinc-800"
                     >
-                      <td className="p-3">{index + 1}</td>
 
                       <td className="p-3">
-                        {data[row]?.[5]}
+                        <div className="flex items-center gap-3">
+                          <Image
+                            src={
+                              singleCovers[data[row]?.[5]] ||
+                              "/covers/eunoia.jpg"
+                            }
+                            alt={data[row]?.[5]}
+                            width={40}
+                            height={40}
+                            className="rounded-md"
+                          />
+
+                          <span>
+                            {data[row]?.[5]}
+                          </span>
+                        </div>
                       </td>
 
                       <td className="p-3 text-right">
@@ -246,7 +346,6 @@ export default async function Home() {
               <table className="w-full text-sm">
                 <thead className="bg-zinc-800">
                   <tr>
-                    <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
                     <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
@@ -259,10 +358,24 @@ export default async function Home() {
                       key={index}
                       className="border-t border-zinc-800"
                     >
-                      <td className="p-3">{index + 1}</td>
 
                       <td className="p-3">
-                        {data[row]?.[9]}
+                        <div className="flex items-center gap-3">
+                          <Image
+                            src={
+                              collabCovers[data[row]?.[9]] ||
+                              "/covers/eunoia.jpg"
+                            }
+                            alt={data[row]?.[9]}
+                            width={40}
+                            height={40}
+                            className="rounded-md"
+                          />
+
+                          <span>
+                            {data[row]?.[9]}
+                          </span>
+                        </div>
                       </td>
 
                       <td className="p-3 text-right">
