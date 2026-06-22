@@ -84,12 +84,10 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto p-8">
 
         {/* HEADER */}
-        {/* HERO */}
-
         <div className="relative mb-12 overflow-hidden rounded-3xl">
 
           <Image
-            src="/banner/nuca.png"
+            src="/banner/nuca.jpg"
             alt="Nuca"
             width={1600}
             height={900}
@@ -127,19 +125,27 @@ export default async function Home() {
             </p>
 
             <div className="flex gap-6 mt-4 text-sm text-zinc-400">
-
               <span>
-                {formatNumber(totalCatalog)} Streams
+                Jatuh cinta, patah hati, dan semua cerita indah lainnya. 🎶 Lacak terus perjalanan streams lagu-lagu Nuca di Spotify dan temukan bagaimana setiap melodinya menjadi soundtrack hidup kita!
               </span>
+            </div>
 
-              <span>
-                {formatNumber(monthlyListeners)} Monthly Listeners
-              </span>
-
-              <span>
-                {formatNumber(followers)} Followers
-              </span>
-
+            <div
+              className="
+              inline-flex
+              items-center
+              mt-4
+              px-4
+              py-2
+              rounded-full
+              bg-zinc-900/50
+              border
+              border-zinc-800
+              text-sm
+              text-zinc-300
+              "
+            >
+              {lastUpdate}
             </div>
 
           </div>
@@ -171,7 +177,7 @@ export default async function Home() {
               text-xs
               font-semibold
               ">📈 Total Catalog</p>
-            <h2 className="text-4xl font-black mt-3">
+            <h2 className="text-3xl font-black mt-2">
               {formatNumber(totalCatalog)}
             </h2>
           </div>
@@ -198,7 +204,7 @@ export default async function Home() {
               text-xs
               font-semibold
               ">🎧 Monthly Listeners</p>
-            <h2 className="text-4xl font-black mt-3">
+            <h2 className="text-3xl font-black mt-2">
               {formatNumber(monthlyListeners)}
             </h2>
           </div>
@@ -225,7 +231,7 @@ export default async function Home() {
               text-xs
               font-semibold
               ">👥  Followers</p>
-            <h2 className="text-4xl font-black mt-3">
+            <h2 className="text-3xl font-black mt-2">
               {formatNumber(followers)}
             </h2>
           </div>
@@ -252,7 +258,7 @@ export default async function Home() {
               text-xs
               font-semibold
               ">🔥 Daily Streams</p>
-            <h2 className="text-4xl font-black mt-3">
+            <h2 className="text-3xl font-black mt-2">
               {formatNumber(dailyStreamsTotal)}
             </h2>
           </div>
@@ -309,7 +315,7 @@ export default async function Home() {
                 Eunoia
               </p>
 
-              <h2 className="text-4xl font-black mt-3">
+              <h2 className="text-3xl font-black mt-2">
                 {formatNumber(totalEunoia)}
               </h2>
 
@@ -373,10 +379,10 @@ export default async function Home() {
                 font-semibold
                 mt-4
               ">
-                Eunoia
+                Singels
               </p>
 
-              <h2 className="text-4xl font-black mt-3">
+              <h2 className="text-3xl font-black mt-2">
                 {formatNumber(totalSingel)}
               </h2>
 
@@ -419,7 +425,7 @@ export default async function Home() {
             <div className="text-center">
 
               <Image
-                src="/covers/collabs.jpg"
+                src="/covers/collab.jpg"
                 alt="Eunoia"
                 width={100}
                 height={100}
@@ -440,10 +446,10 @@ export default async function Home() {
                 font-semibold
                 mt-4
               ">
-                Eunoia
+                Collaborations
               </p>
 
-              <h2 className="text-4xl font-black mt-3">
+              <h2 className="text-3xl font-black mt-2">
                 {formatNumber(totalCollabs)}
               </h2>
 
@@ -820,7 +826,7 @@ export default async function Home() {
                               text-white
                               leading-tight
                             ">
-                              {data[row]?.[5]}
+                              {data[row]?.[9]}
                             </p>
                             
                           </div>
@@ -871,7 +877,7 @@ export default async function Home() {
         </p>
 
         <p className="text-zinc-600 text-xs mt-2">
-          Unofficial Spotify Statistics Tracker
+          Spotify Statistics Tracker
         </p>
       </footer>
     </main>
