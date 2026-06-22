@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { getDashboardData } from "../lib/sheets";
 
 function formatNumber(value) {
@@ -9,6 +12,26 @@ function formatNumber(value) {
     .replace(/\+/g, "");
 
   return Number(cleanValue).toLocaleString("en-US");
+}
+
+function TrendDot(value) {
+  const trend = value?.toString().toUpperCase();
+
+  if (trend === "UP") {
+    return (
+      <span className="inline-block w-2 h-2 rounded-full bg-green-500 ml-1"></span>
+    );
+  }
+
+  if (trend === "DOWN") {
+    return (
+      <span className="inline-block w-2 h-2 rounded-full bg-red-500 ml-1"></span>
+    );
+  }
+
+  return (
+    <span className="inline-block w-2 h-2 rounded-full bg-zinc-500 ml-1"></span>
+  );
 }
 
 export default async function Home() {
@@ -27,9 +50,9 @@ export default async function Home() {
 
   const dailyStreamsTotal = data[4]?.[3];
 
-  const topEunoia = [2,3,4,5,6,7,8,9];
-  const topCollabs = [2,3,4,5,6,7,8];
-  const topSingel = [13,14,15,16,17,18,19];
+  const topEunoia = [2, 3, 4, 5, 6, 7, 8, 9];
+  const topCollabs = [2, 3, 4, 5, 6, 7, 8];
+  const topSingel = [13, 14, 15, 16, 17, 18, 19];
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -54,41 +77,29 @@ export default async function Home() {
         <div className="grid md:grid-cols-4 gap-4 mb-10">
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Total Catalog
-            </p>
-
+            <p className="text-zinc-400">Total Catalog</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(totalCatalog)}
             </h2>
           </div>
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Monthly Listeners
-            </p>
-
+            <p className="text-zinc-400">Monthly Listeners</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(monthlyListeners)}
             </h2>
           </div>
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Followers
-            </p>
-
+            <p className="text-zinc-400">Followers</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(followers)}
             </h2>
           </div>
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Daily Streams
-            </p>
-
-            <h2 className="text-3xl font-bold text-green-500 mt-2">
+            <p className="text-zinc-400">Daily Streams</p>
+            <h2 className="text-3xl font-bold mt-2">
               {formatNumber(dailyStreamsTotal)}
             </h2>
           </div>
@@ -103,30 +114,21 @@ export default async function Home() {
         <div className="grid md:grid-cols-3 gap-4 mb-12">
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Eunoia
-            </p>
-
+            <p className="text-zinc-400">Eunoia</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(totalEunoia)}
             </h2>
           </div>
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Singel
-            </p>
-
+            <p className="text-zinc-400">Singel</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(totalSingel)}
             </h2>
           </div>
 
           <div className="bg-zinc-900 rounded-2xl p-6">
-            <p className="text-zinc-400">
-              Collabs
-            </p>
-
+            <p className="text-zinc-400">Collabs</p>
             <h2 className="text-3xl font-bold mt-2">
               {formatNumber(totalCollabs)}
             </h2>
@@ -139,8 +141,8 @@ export default async function Home() {
 
           {/* EUNOIA */}
           <div>
-            <h2 className="text-xl font-bold text-green-500 mb-4">
-              Top Eunoia
+            <h2 className="text-xl font-bold mb-4">
+              Daily Streams Eunoia
             </h2>
 
             <div className="overflow-hidden rounded-2xl bg-zinc-900">
@@ -150,13 +152,13 @@ export default async function Home() {
                   <tr>
                     <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
-                    <th className="p-3 text-right">Total</th>
+                    <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {topEunoia.map((row,index)=>(
+                  {topEunoia.map((row, index) => (
                     <tr
                       key={index}
                       className="border-t border-zinc-800"
@@ -171,8 +173,11 @@ export default async function Home() {
                         {formatNumber(data[row]?.[6])}
                       </td>
 
-                      <td className="p-3 text-right text-green-500">
-                        {formatNumber(data[row]?.[7])}
+                      <td className="p-3 text-right">
+                        <div className="flex items-center justify-end">
+                          <span>{formatNumber(data[row]?.[7])}</span>
+                          {TrendDot(data[row]?.[8])}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -184,8 +189,8 @@ export default async function Home() {
 
           {/* SINGEL */}
           <div>
-            <h2 className="text-xl font-bold text-green-500 mb-4">
-              Top Singel
+            <h2 className="text-xl font-bold mb-4">
+              Daily Streams Singel
             </h2>
 
             <div className="overflow-hidden rounded-2xl bg-zinc-900">
@@ -195,13 +200,13 @@ export default async function Home() {
                   <tr>
                     <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
-                    <th className="p-3 text-right">Total</th>
+                    <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {topSingel.map((row,index)=>(
+                  {topSingel.map((row, index) => (
                     <tr
                       key={index}
                       className="border-t border-zinc-800"
@@ -216,8 +221,11 @@ export default async function Home() {
                         {formatNumber(data[row]?.[6])}
                       </td>
 
-                      <td className="p-3 text-right text-green-500">
-                        {formatNumber(data[row]?.[7])}
+                      <td className="p-3 text-right">
+                        <div className="flex items-center justify-end">
+                          <span>{formatNumber(data[row]?.[7])}</span>
+                          {TrendDot(data[row]?.[8])}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -229,8 +237,8 @@ export default async function Home() {
 
           {/* COLLABS */}
           <div>
-            <h2 className="text-xl font-bold text-green-500 mb-4">
-              Top Collabs
+            <h2 className="text-xl font-bold mb-4">
+              Daily Streams Collabs
             </h2>
 
             <div className="overflow-hidden rounded-2xl bg-zinc-900">
@@ -240,13 +248,13 @@ export default async function Home() {
                   <tr>
                     <th className="p-3 text-left">#</th>
                     <th className="p-3 text-left">Track</th>
-                    <th className="p-3 text-right">Total</th>
+                    <th className="p-3 text-right">Streams</th>
                     <th className="p-3 text-right">Daily</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {topCollabs.map((row,index)=>(
+                  {topCollabs.map((row, index) => (
                     <tr
                       key={index}
                       className="border-t border-zinc-800"
@@ -261,8 +269,11 @@ export default async function Home() {
                         {formatNumber(data[row]?.[10])}
                       </td>
 
-                      <td className="p-3 text-right text-green-500">
-                        {formatNumber(data[row]?.[11])}
+                      <td className="p-3 text-right">
+                        <div className="flex items-center justify-end">
+                          <span>{formatNumber(data[row]?.[11])}</span>
+                          {TrendDot(data[row]?.[12])}
+                        </div>
                       </td>
                     </tr>
                   ))}
