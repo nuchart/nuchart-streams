@@ -278,61 +278,64 @@ export default async function Home() {
             backdrop-blur-xl
             border
             border-zinc-800
-            rounded-3xl
-            p-6
+            rounded-2xl
+            p-4 md:p-5
             transition-all
             duration-300
-            hover:scale-[1.03]
             hover:border-blue-500
             hover:shadow-xl
             hover:shadow-blue-500/10
           ">
 
-            <div className="text-center">
+            <div className="flex items-center gap-4">
 
               <Image
                 src="/covers/eunoia.jpg"
                 alt="Eunoia"
-                width={100}
-                height={100}
+                width={72}
+                height={72}
                 className="
-                  rounded-2xl
-                  mx-auto
+                  rounded-xl
                   border
                   border-zinc-700
                   shadow-lg
+                  shrink-0
                 "
               />
 
-              <p className="
-                text-zinc-500
-                uppercase
-                tracking-[3px]
-                text-xs
-                font-semibold
-                mt-4
-              ">
-                Eunoia
-              </p>
+              <div className="flex-1">
 
-              <h2 className="text-3xl font-black mt-2">
-                {formatNumber(totalEunoia)}
-              </h2>
+                <p className="
+                  text-zinc-500
+                  uppercase
+                  tracking-[2px]
+                  text-xs
+                  font-semibold
+                ">
+                  Eunoia
+                </p>
 
-              <div className="
-                inline-flex
-                items-center
-                gap-2
-                mt-4
-                px-4
-                py-2
-                rounded-full
-                bg-blue-500/10
-                text-blue-400
-                text-sm
-                font-medium
-              ">
-                🔥 {formatNumber(dailyEunoia)}
+                <h2 className="text-2xl md:text-3xl font-black mt-1">
+                  {formatNumber(totalEunoia)}
+                </h2>
+
+                <div className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  mt-2
+                  px-3
+                  py-1.5
+                  rounded-full
+                  bg-blue-500/10
+                  text-blue-400
+                  text-xs
+                  md:text-sm
+                  font-medium
+                ">
+                  🔥 {formatNumber(dailyEunoia)}
+                </div>
+
               </div>
 
             </div>
@@ -345,61 +348,64 @@ export default async function Home() {
             backdrop-blur-xl
             border
             border-zinc-800
-            rounded-3xl
-            p-6
+            rounded-2xl
+            p-4 md:p-5
             transition-all
             duration-300
-            hover:scale-[1.03]
             hover:border-blue-500
             hover:shadow-xl
             hover:shadow-blue-500/10
           ">
 
-            <div className="text-center">
+            <div className="flex items-center gap-4">
 
               <Image
                 src="/covers/singel.jpg"
-                alt="Eunoia"
-                width={100}
-                height={100}
+                alt="Singel"
+                width={72}
+                height={72}
                 className="
-                  rounded-2xl
-                  mx-auto
+                  rounded-xl
                   border
                   border-zinc-700
                   shadow-lg
+                  shrink-0
                 "
               />
 
-              <p className="
-                text-zinc-500
-                uppercase
-                tracking-[3px]
-                text-xs
-                font-semibold
-                mt-4
-              ">
-                Singels
-              </p>
+              <div className="flex-1">
 
-              <h2 className="text-3xl font-black mt-2">
-                {formatNumber(totalSingel)}
-              </h2>
+                <p className="
+                  text-zinc-500
+                  uppercase
+                  tracking-[2px]
+                  text-xs
+                  font-semibold
+                ">
+                  Singels
+                </p>
 
-              <div className="
-                inline-flex
-                items-center
-                gap-2
-                mt-4
-                px-4
-                py-2
-                rounded-full
-                bg-blue-500/10
-                text-blue-400
-                text-sm
-                font-medium
-              ">
-                🔥 {formatNumber(dailySingel)}
+                <h2 className="text-2xl md:text-3xl font-black mt-1">
+                  {formatNumber(totalSingel)}
+                </h2>
+
+                <div className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  mt-2
+                  px-3
+                  py-1.5
+                  rounded-full
+                  bg-blue-500/10
+                  text-blue-400
+                  text-xs
+                  md:text-sm
+                  font-medium
+                ">
+                  🔥 {formatNumber(dailySingel)}
+                </div>
+
               </div>
 
             </div>
@@ -412,61 +418,64 @@ export default async function Home() {
             backdrop-blur-xl
             border
             border-zinc-800
-            rounded-3xl
-            p-6
+            rounded-2xl
+            p-4 md:p-5
             transition-all
             duration-300
-            hover:scale-[1.03]
             hover:border-blue-500
             hover:shadow-xl
             hover:shadow-blue-500/10
           ">
 
-            <div className="text-center">
+            <div className="flex items-center gap-4">
 
               <Image
                 src="/covers/collab.jpg"
-                alt="Eunoia"
-                width={100}
-                height={100}
+                alt="Collaborations"
+                width={72}
+                height={72}
                 className="
-                  rounded-2xl
-                  mx-auto
+                  rounded-xl
                   border
                   border-zinc-700
                   shadow-lg
+                  shrink-0
                 "
               />
 
-              <p className="
-                text-zinc-500
-                uppercase
-                tracking-[3px]
-                text-xs
-                font-semibold
-                mt-4
-              ">
-                Collaborations
-              </p>
+              <div className="flex-1">
 
-              <h2 className="text-3xl font-black mt-2">
-                {formatNumber(totalCollabs)}
-              </h2>
+                <p className="
+                  text-zinc-500
+                  uppercase
+                  tracking-[2px]
+                  text-xs
+                  font-semibold
+                ">
+                  Collaborations
+                </p>
 
-              <div className="
-                inline-flex
-                items-center
-                gap-2
-                mt-4
-                px-4
-                py-2
-                rounded-full
-                bg-blue-500/10
-                text-blue-400
-                text-sm
-                font-medium
-              ">
-                🔥 {formatNumber(dailyCollabs)}
+                <h2 className="text-2xl md:text-3xl font-black mt-1">
+                  {formatNumber(totalCollabs)}
+                </h2>
+
+                <div className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  mt-2
+                  px-3
+                  py-1.5
+                  rounded-full
+                  bg-blue-500/10
+                  text-blue-400
+                  text-xs
+                  md:text-sm
+                  font-medium
+                ">
+                  🔥 {formatNumber(dailyCollabs)}
+                </div>
+
               </div>
 
             </div>
