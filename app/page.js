@@ -93,6 +93,26 @@ export default async function Home() {
         {/* HEADER */}
         <Header lastUpdate={lastUpdate} />
 
+        {/* INTRO TEXT */}
+        <div className="max-w-4xl mx-auto text-center mb-12">
+
+          <div className="w-16 h-px bg-blue-500 mx-auto mb-6"></div>
+
+          <p
+            className="
+              text-lg
+              md:text-2xl
+              font-medium
+              text-zinc-300
+              leading-relaxed
+            "
+          >
+            Real-time insights into Nuca streaming journey across
+            albums, singles, and collaborations.
+          </p>
+
+        </div>
+
         {/* MAIN STATS */}
         <StatsCards
           totalCatalog={totalCatalog}
@@ -114,7 +134,7 @@ export default async function Home() {
         />
 
         {/* TABLES */}
-        <div className="grid xl:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-6">
 
           {/* EUNOIA */}
           <EunoiaTable

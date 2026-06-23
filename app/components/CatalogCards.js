@@ -73,7 +73,7 @@ export default function CatalogCards({
                         py-1.5
                         rounded-full
                         bg-blue-500/10
-                        text-blue-400
+                        text-zinc-200
                         text-xs
                         md:text-sm
                         font-medium
@@ -143,7 +143,7 @@ export default function CatalogCards({
                         py-1.5
                         rounded-full
                         bg-blue-500/10
-                        text-blue-400
+                        text-zinc-200
                         text-xs
                         md:text-sm
                         font-medium
@@ -213,7 +213,7 @@ export default function CatalogCards({
                         py-1.5
                         rounded-full
                         bg-blue-500/10
-                        text-blue-400
+                        text-zinc-200
                         text-xs
                         md:text-sm
                         font-medium
