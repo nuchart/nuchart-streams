@@ -51,7 +51,7 @@ export default function EunoiaTable({
                 className="
                 w-[110px]
                 md:w-[140px]
-                px-3 md:px-4
+                px-2 sm:px-3 md:px-4
                 py-4
                 text-right
                 text-[11px]
@@ -68,7 +68,7 @@ export default function EunoiaTable({
                 className="
                 w-[110px]
                 md:w-[140px]
-                px-3 md:px-4
+                px-2 sm:px-3 md:px-4
                 py-4
                 text-right
                 text-[11px]
@@ -95,7 +95,7 @@ export default function EunoiaTable({
                 duration-200
                 "
               >
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-3 md:px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Image
                       src="/covers/eunoia.jpg"
@@ -129,7 +129,7 @@ export default function EunoiaTable({
 
                 <td
                   className="
-                  px-3 md:px-4
+                  px-2 sm:px-3 md:px-4
                   py-3
                   text-right
                   font-semibold
@@ -143,7 +143,7 @@ export default function EunoiaTable({
 
                 <td
                   className="
-                  px-3 md:px-4
+                  px-2 sm:px-3 md:px-4
                   py-3
                   text-right
                   font-semibold
