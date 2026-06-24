@@ -88,10 +88,11 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6">
-
-        {/* HEADER */}
+      
+      {/* HEADER */}
         <Header lastUpdate={lastUpdate} />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6">
 
         {/* INTRO TEXT */}
         <div className="max-w-4xl mx-auto text-center mb-12">

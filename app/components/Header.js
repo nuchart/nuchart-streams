@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header({ lastUpdate }) {
   return (
-    <div className="relative mb-12 overflow-hidden rounded-3xl">
+    <div className="relative overflow-hidden">
 
       <Image
         src="/banner/nuca.jpg"
@@ -11,9 +11,13 @@ export default function Header({ lastUpdate }) {
         height={900}
         className="
           w-full
-          h-[320px]
+          h-[260px]
+          sm:h-[340px]
+          md:h-[480px]
           object-cover
+          scale-105
         "
+        priority
       />
 
       <div
@@ -21,45 +25,109 @@ export default function Header({ lastUpdate }) {
           absolute inset-0
           bg-gradient-to-t
           from-black
-          via-black/40
-          to-transparent
+          via-black/70
+          to-black/10
         "
       />
 
-      <div className="absolute bottom-0 left-0 p-8">
+      <div
+        className="
+          absolute
+          inset-x-0
+          bottom-0
+          pb-6
+          md:pb-10
+        "
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
 
-        <h1 className="text-5xl font-black">
-          NUCHART STREAMS
-        </h1>
+          <div
+            className="
+              inline-flex
+              items-center
+              gap-2
+              mb-4
+            "
+          >
+            <div className="w-8 h-[2px] bg-blue-300 rounded-full" />
 
-        <p className="text-zinc-300 mt-2">
-          Spotify Statistics Dashboard
-        </p>
+            <span
+              className="
+                text-[10px]
+                md:text-xs
+                uppercase
+                tracking-[3px]
+                text-blue-300
+                font-semibold
+              "
+            >
+              Nuca Official Data
+            </span>
+          </div>
 
-        <div className="flex gap-6 mt-4 text-sm text-zinc-400">
-          <span>
+          <h1
+            className="
+              text-3xl
+              sm:text-4xl
+              md:text-5xl
+              lg:text-6xl
+              font-black
+              leading-none
+              tracking-tight
+            "
+          >
+            NUCHART STREAMS
+          </h1>
+
+          <p
+            className="
+              mt-3
+              text-sm
+              md:text-lg
+              text-zinc-300
+            "
+          >
+            Spotify Statistics Dashboard
+          </p>
+
+          <p
+            className="
+              mt-2
+              max-w-2xl
+              text-xs
+              md:text-sm
+              text-zinc-400
+            "
+          >
             Jatuh cinta, patah hati, dan semua cerita indah lainnya. 🎶
-          </span>
-        </div>
+          </p>
 
-        <div
-          className="
-            inline-flex
-            items-center
-            mt-4
-            px-4
-            py-2
-            rounded-full
-            bg-zinc-900/50
-            border
-            border-zinc-800
-            text-sm
-            text-zinc-300
-          "
-        >
-          {lastUpdate}
-        </div>
+          <div
+            className="
+              inline-flex
+              items-center
+              gap-2
+              mt-5
+              px-4
+              py-2
+              rounded-full
+              bg-zinc-900/60
+              backdrop-blur-md
+              border
+              border-zinc-700/70
+              text-xs
+              md:text-sm
+              text-zinc-300
+            "
+          >
+            <span className="w-2 h-2 rounded-full bg-green-500" />
 
+            <span>
+              Updated {lastUpdate}
+            </span>
+          </div>
+
+        </div>
       </div>
 
     </div>
