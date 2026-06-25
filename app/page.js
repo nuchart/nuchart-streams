@@ -88,24 +88,35 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      
-      {/* HEADER */}
-        <Header lastUpdate={lastUpdate} />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6">
+      {/* HERO HEADER */}
+      <Header lastUpdate={lastUpdate} />
 
-        {/* INTRO TEXT */}
-        <div className="max-w-4xl mx-auto text-center mb-12">
+      {/* CONTENT */}
+      <div
+        className="
+        max-w-[1440px]
+        mx-auto
+        px-4
+        md:px-6
+        lg:px-8
+        pt-10
+        pb-8
+        "
+      >
 
-          <div className="w-16 h-px bg-blue-500 mx-auto mb-6"></div>
+        {/* INTRO */}
+        <div className="max-w-3xl mx-auto text-center mb-12">
+
+          <div className="w-16 h-px bg-blue-500 mx-auto mb-5"></div>
 
           <p
             className="
-              text-lg
-              md:text-2xl
-              font-medium
-              text-zinc-300
-              leading-relaxed
+            text-base
+            md:text-xl
+            font-medium
+            text-zinc-300
+            leading-relaxed
             "
           >
             Real-time insights into Nuca streaming journey across
@@ -115,59 +126,146 @@ export default async function Home() {
         </div>
 
         {/* MAIN STATS */}
-        <StatsCards
-          totalCatalog={totalCatalog}
-          monthlyListeners={monthlyListeners}
-          followers={followers}
-          dailyStreamsTotal={dailyStreamsTotal}
-          formatNumber={formatNumber}
-        />
+        <section className="mb-12">
 
-        {/* CATALOG CARDS */}
-        <CatalogCards
-          totalEunoia={totalEunoia}
-          dailyEunoia={dailyEunoia}
-          totalSingel={totalSingel}
-          dailySingel={dailySingel}
-          totalCollabs={totalCollabs}
-          dailyCollabs={dailyCollabs}
-          formatNumber={formatNumber}
-        />
-
-        {/* TABLES */}
-        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-6">
-
-          {/* EUNOIA */}
-          <EunoiaTable
-            topEunoia={topEunoia}
-            data={data}
+          <StatsCards
+            totalCatalog={totalCatalog}
+            monthlyListeners={monthlyListeners}
+            followers={followers}
+            dailyStreamsTotal={dailyStreamsTotal}
             formatNumber={formatNumber}
-            TrendDot={TrendDot}
           />
 
-          {/* SINGEL */}
-          <SingelTable
-            topSingel={topSingel}
-            data={data}
+        </section>
+
+        {/* CATALOG */}
+        <section className="mb-14">
+
+          <div className="mb-6">
+
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-[2px] bg-blue-500 rounded-full" />
+
+              <span
+                className="
+                text-xs
+                uppercase
+                tracking-[3px]
+                text-blue-400
+                font-semibold
+                "
+              >
+                Catalog Overview
+              </span>
+            </div>
+
+            <h2
+              className="
+              text-2xl
+              md:text-3xl
+              font-bold
+              tracking-tight
+              "
+            >
+              Music Collection
+            </h2>
+
+          </div>
+
+          <CatalogCards
+            totalEunoia={totalEunoia}
+            dailyEunoia={dailyEunoia}
+            totalSingel={totalSingel}
+            dailySingel={dailySingel}
+            totalCollabs={totalCollabs}
+            dailyCollabs={dailyCollabs}
             formatNumber={formatNumber}
-            TrendDot={TrendDot}
-            singleCovers={singleCovers}
           />
 
-          {/* COLLABS */}
-          <CollabsTable
-            topCollabs={topCollabs}
-            data={data}
-            formatNumber={formatNumber}
-            TrendDot={TrendDot}
-            collabCovers={collabCovers}
-          />
+        </section>
 
-        </div>
+        {/* TRACK RANKINGS */}
+        <section>
+
+          <div className="mb-8">
+
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-[2px] bg-blue-500 rounded-full" />
+
+              <span
+                className="
+                text-xs
+                uppercase
+                tracking-[3px]
+                text-blue-400
+                font-semibold
+                "
+              >
+                Streaming Performance
+              </span>
+            </div>
+
+            <h2
+              className="
+              text-2xl
+              md:text-3xl
+              font-bold
+              tracking-tight
+              "
+            >
+              Track Rankings
+            </h2>
+
+            <p className="text-zinc-500 mt-2">
+              Daily performance across albums, singles and collaborations.
+            </p>
+
+          </div>
+
+          <div
+            className="
+            grid
+            grid-cols-1
+            xl:grid-cols-2
+            2xl:grid-cols-3
+            gap-8
+            "
+          >
+
+            {/* EUNOIA */}
+            <EunoiaTable
+              topEunoia={topEunoia}
+              data={data}
+              formatNumber={formatNumber}
+              TrendDot={TrendDot}
+            />
+
+            {/* SINGLES */}
+            <SingelTable
+              topSingel={topSingel}
+              data={data}
+              formatNumber={formatNumber}
+              TrendDot={TrendDot}
+              singleCovers={singleCovers}
+            />
+
+            {/* COLLABS */}
+            <CollabsTable
+              topCollabs={topCollabs}
+              data={data}
+              formatNumber={formatNumber}
+              TrendDot={TrendDot}
+              collabCovers={collabCovers}
+            />
+
+          </div>
+
+        </section>
 
       </div>
 
-    <Footer />
+      <Footer />
+
     </main>
   );
 }

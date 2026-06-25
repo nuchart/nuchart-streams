@@ -9,225 +9,182 @@ export default function CatalogCards({
   dailyCollabs,
   formatNumber,
 }) {
+  const catalogs = [
+    {
+      title: "Eunoia",
+      cover: "/covers/eunoia.jpg",
+      total: totalEunoia,
+      daily: dailyEunoia,
+    },
+    {
+      title: "Singles",
+      cover: "/covers/singel.jpg",
+      total: totalSingel,
+      daily: dailySingel,
+    },
+    {
+      title: "Collaborations",
+      cover: "/covers/collab.jpg",
+      total: totalCollabs,
+      daily: dailyCollabs,
+    },
+  ];
+
   return (
     <>
-        {/* CATALOG */}
-        <h2 className="text-xl font-bold mb-4">
-                Catalog Streams
+      {/* SECTION TITLE */}
+      <div className="mb-5">
+        <h2 className="text-xl font-bold tracking-tight">
+          Catalog Streams
         </h2>
-        <div className="grid md:grid-cols-3 gap-4 mb-12">
-                
-                {/* EUNOIA */}
-                <div className="
-                    bg-zinc-900/60
-                    backdrop-blur-xl
-                    border
-                    border-zinc-800
-                    rounded-2xl
-                    p-4 md:p-5
-                    transition-all
-                    duration-300
-                    hover:border-blue-500
-                    hover:shadow-xl
-                    hover:shadow-blue-500/10
-                ">
-        
-                    <div className="flex items-center gap-4">
-        
-                    <Image
-                        src="/covers/eunoia.jpg"
-                        alt="Eunoia"
-                        width={72}
-                        height={72}
-                        className="
-                        rounded-xl
-                        border
-                        border-zinc-700
-                        shadow-lg
-                        shrink-0
-                        "
-                    />
-        
-                    <div className="flex-1">
-        
-                        <p className="
-                        text-zinc-500
-                        uppercase
-                        tracking-[2px]
-                        text-xs
-                        font-semibold
-                        ">
-                        Eunoia
-                        </p>
-        
-                        <h2 className="text-2xl md:text-3xl font-black mt-1">
-                        {formatNumber(totalEunoia)}
-                        </h2>
-        
-                        <div className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        mt-2
-                        px-3
-                        py-1.5
-                        rounded-full
-                        bg-blue-500/10
-                        text-zinc-200
-                        text-xs
-                        md:text-sm
-                        font-medium
-                        ">
-                        🔥 {formatNumber(dailyEunoia)}
-                        </div>
-        
-                    </div>
-        
-                    </div>
-        
+
+        <p className="text-sm text-zinc-500 mt-1">
+          Performance by release category
+        </p>
+      </div>
+
+      {/* CARDS */}
+      <div
+        className="
+        grid
+        grid-cols-1
+        md:grid-cols-3
+        gap-3
+        mb-10
+        "
+      >
+        {catalogs.map((item) => (
+          <div
+            key={item.title}
+            className="
+            group
+            relative
+            overflow-hidden
+
+            rounded-2xl
+            border
+            border-zinc-800
+
+            bg-zinc-900/40
+            backdrop-blur-xl
+
+            p-3.5
+
+            transition-all
+            duration-300
+
+            hover:-translate-y-1
+            hover:border-blue-500/20
+            hover:bg-zinc-900/60
+            hover:shadow-lg
+            hover:shadow-black/40
+            "
+          >
+            {/* Hover Glow */}
+            <div
+              className="
+              absolute
+              inset-0
+
+              opacity-0
+              transition-opacity
+              duration-300
+
+              group-hover:opacity-100
+
+              bg-gradient-to-r
+              from-blue-500/[0.03]
+              via-transparent
+              to-transparent
+
+              pointer-events-none
+              "
+            />
+
+            <div className="relative z-10 flex items-center gap-2.5">
+
+              <Image
+                src={item.cover}
+                alt={item.title}
+                width={48}
+                height={48}
+                className="
+                rounded-lg
+                border
+                border-zinc-700
+
+                shrink-0
+
+                transition-all
+                duration-300
+
+                group-hover:scale-105
+                "
+              />
+
+              <div className="flex-1 min-w-0">
+
+                <p
+                  className="
+                  text-[9px]
+                  uppercase
+                  tracking-[2px]
+                  text-zinc-500
+                  font-semibold
+                  "
+                >
+                  {item.title}
+                </p>
+
+                <h3
+                  className="
+                  text-lg
+                  md:text-xl
+                  font-black
+                  tracking-tight
+                  mt-0.5
+
+                  transition-colors
+                  duration-300
+
+                  group-hover:text-white
+                  "
+                >
+                  {formatNumber(item.total)}
+                </h3>
+
+                <div
+                  className="
+                  inline-flex
+                  items-center
+                  gap-1
+                  mt-1.5
+
+                  px-2
+                  py-0.5
+
+                  rounded-full
+
+                  bg-zinc-800/80
+
+                  text-[10px]
+                  text-zinc-300
+
+                  transition-all
+                  duration-300
+
+                  group-hover:bg-zinc-700
+                  "
+                >
+                  🔥 {formatNumber(item.daily)}
                 </div>
-        
-                {/* SINGEL */}
-                <div className="
-                    bg-zinc-900/60
-                    backdrop-blur-xl
-                    border
-                    border-zinc-800
-                    rounded-2xl
-                    p-4 md:p-5
-                    transition-all
-                    duration-300
-                    hover:border-blue-500
-                    hover:shadow-xl
-                    hover:shadow-blue-500/10
-                ">
-        
-                    <div className="flex items-center gap-4">
-        
-                    <Image
-                        src="/covers/singel.jpg"
-                        alt="Singel"
-                        width={72}
-                        height={72}
-                        className="
-                        rounded-xl
-                        border
-                        border-zinc-700
-                        shadow-lg
-                        shrink-0
-                        "
-                    />
-        
-                    <div className="flex-1">
-        
-                        <p className="
-                        text-zinc-500
-                        uppercase
-                        tracking-[2px]
-                        text-xs
-                        font-semibold
-                        ">
-                        Singels
-                        </p>
-        
-                        <h2 className="text-2xl md:text-3xl font-black mt-1">
-                        {formatNumber(totalSingel)}
-                        </h2>
-        
-                        <div className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        mt-2
-                        px-3
-                        py-1.5
-                        rounded-full
-                        bg-blue-500/10
-                        text-zinc-200
-                        text-xs
-                        md:text-sm
-                        font-medium
-                        ">
-                        🔥 {formatNumber(dailySingel)}
-                        </div>
-        
-                    </div>
-        
-                    </div>
-        
-                </div>
-        
-                {/* COLLABS */}
-                <div className="
-                    bg-zinc-900/60
-                    backdrop-blur-xl
-                    border
-                    border-zinc-800
-                    rounded-2xl
-                    p-4 md:p-5
-                    transition-all
-                    duration-300
-                    hover:border-blue-500
-                    hover:shadow-xl
-                    hover:shadow-blue-500/10
-                ">
-        
-                    <div className="flex items-center gap-4">
-        
-                    <Image
-                        src="/covers/collab.jpg"
-                        alt="Collaborations"
-                        width={72}
-                        height={72}
-                        className="
-                        rounded-xl
-                        border
-                        border-zinc-700
-                        shadow-lg
-                        shrink-0
-                        "
-                    />
-        
-                    <div className="flex-1">
-        
-                        <p className="
-                        text-zinc-500
-                        uppercase
-                        tracking-[2px]
-                        text-xs
-                        font-semibold
-                        ">
-                        Collaborations
-                        </p>
-        
-                        <h2 className="text-2xl md:text-3xl font-black mt-1">
-                        {formatNumber(totalCollabs)}
-                        </h2>
-        
-                        <div className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        mt-2
-                        px-3
-                        py-1.5
-                        rounded-full
-                        bg-blue-500/10
-                        text-zinc-200
-                        text-xs
-                        md:text-sm
-                        font-medium
-                        ">
-                        🔥 {formatNumber(dailyCollabs)}
-                        </div>
-        
-                    </div>
-        
-                    </div>
-        
-                </div>
-        
-        </div>
+
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

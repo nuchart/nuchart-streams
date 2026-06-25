@@ -8,6 +8,7 @@ export default function EunoiaTable({
 }) {
   return (
     <div>
+      {/* TITLE */}
       <div className="mb-5">
         <h2 className="text-xl font-bold tracking-tight">
           Daily Streams Eunoia
@@ -18,29 +19,36 @@ export default function EunoiaTable({
         </p>
       </div>
 
+      {/* TABLE CARD */}
       <div
         className="
         rounded-3xl
-        bg-zinc-900/60
-        backdrop-blur-xl
         border
         border-zinc-800
-        shadow-xl
-        shadow-black/30
+        bg-zinc-900/40
+        backdrop-blur-xl
         overflow-hidden
         "
       >
-        <table className="w-full table-fixed text-sm">
-          <thead className="bg-zinc-950/80">
-            <tr>
+        <table className="w-full text-sm">
+
+          {/* HEADER */}
+          <thead>
+            <tr
+              className="
+              text-zinc-500
+              text-[10px]
+              md:text-[11px]
+              uppercase
+              tracking-[2px]
+              "
+            >
               <th
                 className="
-                px-4 py-4
+                px-2.5
+                md:px-4
+                py-3
                 text-left
-                text-[11px]
-                uppercase
-                tracking-[2px]
-                text-zinc-500
                 font-semibold
                 "
               >
@@ -49,15 +57,15 @@ export default function EunoiaTable({
 
               <th
                 className="
-                w-[110px]
-                md:w-[140px]
-                px-2 sm:px-3 md:px-4
-                py-4
+                w-[75px]
+                sm:w-[85px]
+                md:w-[105px]
+
+                px-1.5
+                md:px-2
+
+                py-3
                 text-right
-                text-[11px]
-                uppercase
-                tracking-[2px]
-                text-zinc-500
                 font-semibold
                 "
               >
@@ -66,15 +74,15 @@ export default function EunoiaTable({
 
               <th
                 className="
-                w-[110px]
-                md:w-[140px]
-                px-2 sm:px-3 md:px-4
-                py-4
+                w-[80px]
+                sm:w-[90px]
+                md:w-[105px]
+
+                px-1.5
+                md:px-2
+
+                py-3
                 text-right
-                text-[11px]
-                uppercase
-                tracking-[2px]
-                text-zinc-500
                 font-semibold
                 "
               >
@@ -83,57 +91,88 @@ export default function EunoiaTable({
             </tr>
           </thead>
 
+          {/* BODY */}
           <tbody>
             {topEunoia.map((row, index) => (
               <tr
                 key={index}
                 className="
-                border-t
-                border-zinc-800/60
-                hover:bg-blue-500/5
+                group
+
                 transition-all
-                duration-200
+                duration-300
+
+                hover:bg-white/[0.03]
                 "
               >
-                <td className="px-2 sm:px-3 md:px-4 py-3">
-                  <div className="flex items-center gap-3">
+                {/* TRACK */}
+                <td
+                  className="
+                  px-2.5
+                  md:px-4
+
+                  py-2.5
+                  "
+                >
+                  <div className="flex items-center gap-2">
+
                     <Image
                       src="/covers/eunoia.jpg"
                       alt="Eunoia"
-                      width={42}
-                      height={42}
+                      width={34}
+                      height={34}
                       className="
                       rounded-lg
                       border
                       border-zinc-700
-                      shadow-md
-                      flex-shrink-0
+                      shrink-0
+
+                      transition-transform
+                      duration-300
+
+                      group-hover:scale-105
                       "
                     />
 
                     <div className="flex-1 min-w-0">
+
                       <p
                         className="
+                        text-sm
                         font-medium
                         text-white
-                        text-sm
-                        leading-tight
                         truncate
+
+                        transition-colors
+                        duration-300
+
+                        group-hover:text-zinc-100
                         "
                       >
                         {data[row]?.[5]}
                       </p>
+
                     </div>
+
                   </div>
                 </td>
 
+                {/* STREAMS */}
                 <td
                   className="
-                  px-2 sm:px-3 md:px-4
-                  py-3
+                  px-1.5
+                  md:px-2
+
+                  py-2.5
+
                   text-right
+
+                  text-xs
+                  sm:text-sm
+
                   font-semibold
                   text-zinc-300
+
                   tabular-nums
                   whitespace-nowrap
                   "
@@ -141,28 +180,41 @@ export default function EunoiaTable({
                   {formatNumber(data[row]?.[6])}
                 </td>
 
+                {/* DAILY */}
                 <td
                   className="
-                  px-2 sm:px-3 md:px-4
-                  py-3
+                  px-1.5
+                  md:px-2
+
+                  py-2.5
+
                   text-right
+
+                  text-xs
+                  sm:text-sm
+
                   font-semibold
-                  text-zinc-200
+                  text-zinc-300
+
                   tabular-nums
                   whitespace-nowrap
                   "
                 >
-                  <div className="flex items-center justify-end gap-0.5">
+                  <div className="inline-flex items-center justify-end gap-1">
+
                     <span>
                       {formatNumber(data[row]?.[7])}
                     </span>
 
                     {TrendDot(data[row]?.[8])}
+
                   </div>
                 </td>
+
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     </div>
