@@ -75,18 +75,19 @@ export default function CollabsTable({
 
               <th
                 className="
-                w-[75px]
-                sm:w-[85px]
-                md:w-[110px]
+                w-[95px]
+                sm:w-[115px]
+                md:w-[130px]
 
                 px-2
                 py-3
 
                 text-right
                 text-[10px]
-                md:text-[11px]
+
                 uppercase
-                tracking-[3px]
+                tracking-[2px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -199,25 +200,49 @@ export default function CollabsTable({
                   px-2
                   py-3
 
+                  text-right
                   text-xs
                   sm:text-sm
 
-                  font-semibold
+                  font-medium
                   text-zinc-300
 
                   tabular-nums
+                  whitespace-nowrap
                   "
                 >
-                  <div className="flex items-center justify-end">
+                  <div
+                    className="
+                    flex
+                    items-center
+                    justify-end
 
-                    <span className="text-right">
-                      {formatNumber(data[row]?.[11])}
+                    min-w-[95px]
+                    sm:min-w-[115px]
+                    md:min-w-[130px]
+                    "
+                  >
+                    <span
+                      className="
+                      w-[72px]
+                      sm:w-[88px]
+                      md:w-[100px]
+
+                      text-right
+                      "
+                    >
+                      {formatNumber(data[row]?.[7])}
                     </span>
 
-                    <span className="w-4 flex justify-center ml-1">
-                      {TrendDot(data[row]?.[12])}
+                    <span
+                      className="
+                      w-4
+                      flex
+                      justify-center
+                      "
+                    >
+                      {TrendDot(data[row]?.[8])}
                     </span>
-
                   </div>
                 </td>
 
