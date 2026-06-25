@@ -141,37 +141,6 @@ export default async function Home() {
         {/* CATALOG */}
         <section className="mb-14">
 
-          <div className="mb-6">
-
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-[2px] bg-blue-500 rounded-full" />
-
-              <span
-                className="
-                text-xs
-                uppercase
-                tracking-[3px]
-                text-blue-400
-                font-semibold
-                "
-              >
-                Catalog Overview
-              </span>
-            </div>
-
-            <h2
-              className="
-              text-2xl
-              md:text-3xl
-              font-bold
-              tracking-tight
-              "
-            >
-              Music Collection
-            </h2>
-
-          </div>
-
           <CatalogCards
             totalEunoia={totalEunoia}
             dailyEunoia={dailyEunoia}
@@ -186,41 +155,6 @@ export default async function Home() {
 
         {/* TRACK RANKINGS */}
         <section>
-
-          <div className="mb-8">
-
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-[2px] bg-blue-500 rounded-full" />
-
-              <span
-                className="
-                text-xs
-                uppercase
-                tracking-[3px]
-                text-blue-400
-                font-semibold
-                "
-              >
-                Streaming Performance
-              </span>
-            </div>
-
-            <h2
-              className="
-              text-2xl
-              md:text-3xl
-              font-bold
-              tracking-tight
-              "
-            >
-              Track Rankings
-            </h2>
-
-            <p className="text-zinc-500 mt-2">
-              Daily performance across albums, singles and collaborations.
-            </p>
-
-          </div>
 
           <div
             className="

@@ -65,52 +65,9 @@ export default function Footer() {
               mt-1
               "
             >
-              Spotify Statistics Dashboard
+              © 2026 Nuchart.id
             </p>
 
-          </div>
-
-          {/* Center */}
-          <div
-            className="
-            hidden
-            md:flex
-            items-center
-            gap-2
-            "
-          >
-            <div className="w-12 h-px bg-zinc-800" />
-
-            <div className="w-2 h-2 rounded-full bg-blue-400" />
-
-            <div className="w-12 h-px bg-zinc-800" />
-          </div>
-
-          {/* Right */}
-          <div
-            className="
-            text-center
-            md:text-right
-            "
-          >
-            <p
-              className="
-              text-xs
-              text-zinc-500
-              "
-            >
-              © 2026 Nuchart Streams
-            </p>
-
-            <p
-              className="
-              text-[11px]
-              text-zinc-600
-              mt-1
-              "
-            >
-              Built for Nuca streaming analytics
-            </p>
           </div>
 
         </div>

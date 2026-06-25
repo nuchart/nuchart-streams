@@ -9,9 +9,10 @@ export default function SingelTable({
 }) {
   return (
     <div>
+      {/* TITLE */}
       <div className="mb-5">
         <h2 className="text-xl font-bold tracking-tight">
-          Daily Streams Singels
+          Daily Streams Singles
         </h2>
 
         <p className="text-sm text-zinc-500 mt-1">
@@ -19,28 +20,31 @@ export default function SingelTable({
         </p>
       </div>
 
+      {/* TABLE */}
       <div
         className="
-        rounded-3xl
-        bg-zinc-900/60
+        bg-zinc-900/20
         backdrop-blur-xl
-        border
-        border-zinc-800
-        shadow-xl
-        shadow-black/30
+        rounded-2xl
         overflow-hidden
         "
       >
         <table className="w-full table-fixed text-sm">
-          <thead className="bg-zinc-950/80">
-            <tr>
+
+          {/* HEADER */}
+          <thead>
+            <tr className="border-b border-zinc-800/60">
+
               <th
                 className="
-                px-4 py-4
+                px-3
+                md:px-4
+                py-3
                 text-left
-                text-[11px]
+                text-[10px]
+                md:text-[11px]
                 uppercase
-                tracking-[2px]
+                tracking-[3px]
                 text-zinc-500
                 font-semibold
                 "
@@ -50,14 +54,18 @@ export default function SingelTable({
 
               <th
                 className="
-                w-[110px]
-                md:w-[140px]
-                px-2 sm:px-3 md:px-4
-                py-4
+                w-[85px]
+                sm:w-[95px]
+                md:w-[120px]
+
+                px-2
+                py-3
+
                 text-right
-                text-[11px]
+                text-[10px]
+                md:text-[11px]
                 uppercase
-                tracking-[2px]
+                tracking-[3px]
                 text-zinc-500
                 font-semibold
                 "
@@ -67,106 +75,156 @@ export default function SingelTable({
 
               <th
                 className="
-                w-[110px]
-                md:w-[140px]
-                px-2 sm:px-3 md:px-4
-                py-4
+                w-[75px]
+                sm:w-[85px]
+                md:w-[110px]
+
+                px-2
+                py-3
+
                 text-right
-                text-[11px]
+                text-[10px]
+                md:text-[11px]
                 uppercase
-                tracking-[2px]
+                tracking-[3px]
                 text-zinc-500
                 font-semibold
                 "
               >
                 Daily
               </th>
+
             </tr>
           </thead>
 
+          {/* BODY */}
           <tbody>
             {topSingel.map((row, index) => (
               <tr
                 key={index}
                 className="
-                border-t
-                border-zinc-800/60
-                hover:bg-blue-500/5
+                group
+                border-b
+                border-zinc-800/40
+
                 transition-all
-                duration-200
+                duration-300
+
+                hover:bg-gradient-to-r
+                hover:from-blue-500/[0.06]
+                hover:to-transparent
                 "
               >
-                <td className="px-2 sm:px-3 md:px-4 py-3">
-                  <div className="flex items-center gap-3">
+                {/* TRACK */}
+                <td
+                  className="
+                  px-3
+                  md:px-4
+                  py-3
+                  "
+                >
+                  <div className="flex items-center gap-2.5">
+
                     <Image
                       src={
                         singleCovers[data[row]?.[5]] ||
                         "/covers/singel.jpg"
                       }
                       alt={data[row]?.[5]}
-                      width={42}
-                      height={42}
+                      width={32}
+                      height={32}
                       className="
                       rounded-lg
                       border
-                      border-zinc-700
-                      shadow-md
-                      flex-shrink-0
+                      border-zinc-700/70
+                      shadow-sm
+                      shrink-0
+
+                      transition-all
+                      duration-300
+
+                      group-hover:scale-105
+                      group-hover:border-blue-500/30
                       "
                     />
 
-                    <div className="flex-1 min-w-0">
+                    <div className="min-w-0 max-w-[140px] sm:max-w-none">
+
                       <p
                         className="
+                        truncate
+                        text-sm
+                        md:text-[15px]
                         font-medium
                         text-white
-                        text-sm
-                        leading-tight
-                        truncate
+
+                        transition-colors
+                        duration-300
+
+                        group-hover:text-blue-50
                         "
+                        title={data[row]?.[5]}
                       >
                         {data[row]?.[5]}
                       </p>
+
                     </div>
+
                   </div>
                 </td>
 
+                {/* STREAMS */}
                 <td
                   className="
-                  px-2 sm:px-3 md:px-4
+                  px-2
                   py-3
+
                   text-right
+                  text-xs
+                  sm:text-sm
+
                   font-semibold
                   text-zinc-300
-                  tabular-nums
+
                   whitespace-nowrap
+                  tabular-nums
                   "
                 >
                   {formatNumber(data[row]?.[6])}
                 </td>
 
+                {/* DAILY */}
                 <td
                   className="
-                  px-2 sm:px-3 md:px-4
+                  px-2
                   py-3
-                  text-right
+
+                  text-xs
+                  sm:text-sm
+
                   font-semibold
-                  text-zinc-200
+                  text-zinc-300
+
                   tabular-nums
-                  whitespace-nowrap
                   "
                 >
-                  <div className="flex items-center justify-end gap-0.5">
-                    <span>
+                  <div className="flex items-center justify-end">
+
+                    <span className="text-right">
                       {formatNumber(data[row]?.[7])}
                     </span>
 
-                    {TrendDot(data[row]?.[8])}
+                    <span className="w-4 flex justify-center ml-1">
+                      {TrendDot(data[row]?.[8])}
+                    </span>
+
                   </div>
                 </td>
+
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     </div>
