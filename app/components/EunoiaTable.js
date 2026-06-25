@@ -74,9 +74,9 @@ export default function EunoiaTable({
 
               <th
                 className="
-                w-[100px]
-                sm:w-[120px]
-                md:w-[140px]
+                w-[95px]
+                sm:w-[115px]
+                md:w-[130px]
 
                 px-2
                 py-3
@@ -190,48 +190,49 @@ export default function EunoiaTable({
                 </td>
 
                 {/* DAILY */}
-                <td
-                  className="
-                  py-4
-                  pr-4
-                  text-right
-                  "
-                >
-                  <div
-                    className="
-                    flex
-                    items-center
-                    justify-end
-                    "
-                  >
-                    <span
-                      className="
-                      w-[80px]
-                      sm:w-[95px]
-                      md:w-[110px]
+<td
+  className="
+  py-3
+  pr-3
+  md:pr-4
+  "
+>
+  <div
+    className="
+    flex
+    items-center
+    justify-end
+    gap-1.5
+    "
+  >
+    <span
+      className="
+      text-right
+      font-medium
+      text-zinc-300
 
-                      text-right
-                      font-medium
-                      text-zinc-300
+      text-xs
+      sm:text-sm
 
-                      text-xs
-                      sm:text-sm
-                      "
-                    >
-                      {formatNumber(data[row]?.[7])}
-                    </span>
+      tabular-nums
+      whitespace-nowrap
+      "
+    >
+      {formatNumber(data[row]?.[7])}
+    </span>
 
-                    <span
-                      className="
-                      w-4
-                      flex
-                      justify-center
-                      "
-                    >
-                      {TrendDot(data[row]?.[8])}
-                    </span>
-                  </div>
-                </td>
+    <span
+      className="
+      w-3
+      flex
+      justify-center
+      shrink-0
+      "
+    >
+      {TrendDot(data[row]?.[8])}
+    </span>
+  </div>
+</td>
 
               </tr>
             ))}

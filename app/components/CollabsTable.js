@@ -75,9 +75,9 @@ export default function CollabsTable({
 
               <th
                 className="
-                w-[100px]
-                sm:w-[120px]
-                md:w-[140px]
+                w-[95px]
+                sm:w-[115px]
+                md:w-[130px]
 
                 px-2
                 py-3
@@ -196,9 +196,9 @@ export default function CollabsTable({
                 {/* DAILY */}
                 <td
                   className="
-                  py-4
-                  pr-4
-                  text-right
+                  py-3
+                  pr-3
+                  md:pr-4
                   "
                 >
                   <div
@@ -206,20 +206,20 @@ export default function CollabsTable({
                     flex
                     items-center
                     justify-end
+                    gap-1.5
                     "
                   >
                     <span
                       className="
-                      w-[80px]
-                      sm:w-[95px]
-                      md:w-[110px]
-
                       text-right
                       font-medium
                       text-zinc-300
 
                       text-xs
                       sm:text-sm
+
+                      tabular-nums
+                      whitespace-nowrap
                       "
                     >
                       {formatNumber(data[row]?.[11])}
@@ -227,9 +227,10 @@ export default function CollabsTable({
 
                     <span
                       className="
-                      w-4
+                      w-3
                       flex
                       justify-center
+                      shrink-0
                       "
                     >
                       {TrendDot(data[row]?.[12])}
