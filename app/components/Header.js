@@ -8,41 +8,33 @@ export default function Header({
     updateStatus?.toString().toLowerCase().includes("waiting");
 
   return (
-    <header
-      className="
-        relative
-        overflow-hidden
-        h-[240px]
-        sm:h-[320px]
-        md:h-[450px]
-        lg:h-[560px]
-        xl:h-[620px]
-      "
-    >
-      {/* Banner */}
+    <header className="relative overflow-hidden">
+
       <Image
         src="/banner/nucat.jpg"
         alt="Nuca"
-        fill
+        width={1600}
+        height={900}
         priority
-        sizes="100vw"
         className="
+          w-full
+          h-[240px]
+          sm:h-[320px]
+          md:h-[400px]
           object-cover
-          object-center
-          transition-transform
-          duration-700
+          scale-105
         "
       />
 
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <div
         className="
           absolute
           inset-0
           bg-gradient-to-t
           from-black
-          via-black/55
-          to-black/10
+          via-black/60
+          to-black/20
         "
       />
 
@@ -53,7 +45,7 @@ export default function Header({
           bottom-0
           left-0
           right-0
-          h-40
+          h-32
           bg-gradient-to-t
           from-black
           to-transparent
@@ -64,12 +56,14 @@ export default function Header({
       <div
         className="
           absolute
-          inset-0
-          flex
-          items-end
+          inset-x-0
+          bottom-0
+          pb-5
+          md:pb-8
         "
       >
-        <div className="w-full max-w-7xl mx-auto px-5 md:px-8 pb-6 md:pb-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
           {/* Title */}
           <h1
             className="
@@ -77,11 +71,9 @@ export default function Header({
               sm:text-4xl
               md:text-5xl
               lg:text-6xl
-              xl:text-7xl
               font-black
               leading-none
               tracking-tight
-              text-white
             "
           >
             NUCHART STREAMS
@@ -90,64 +82,73 @@ export default function Header({
           {/* Subtitle */}
           <p
             className="
-              mt-3
+              mt-2
               text-sm
-              sm:text-base
-              md:text-lg
+              md:text-base
               text-zinc-300
             "
           >
             Spotify Statistics Dashboard
           </p>
 
-          {/* Badge */}
-          <div className="flex flex-wrap gap-3 mt-5">
+          {/* Badges */}
+          <div className="flex flex-wrap items-center gap-2 mt-4">
+
+            {/* Last Update */}
             <div
               className="
                 inline-flex
                 items-center
                 gap-2
-                px-4
-                py-2
+                px-3
+                py-1.5
                 rounded-full
-                bg-zinc-900/50
-                backdrop-blur-md
+                bg-zinc-900/40
+                backdrop-blur-sm
                 border
-                border-zinc-700
+                border-zinc-800
                 text-xs
-                sm:text-sm
-                text-zinc-200
+                text-zinc-300
               "
             >
               <span className="w-2 h-2 rounded-full bg-green-500" />
-              {lastUpdate}
+
+              <span>
+                {lastUpdate}
+              </span>
             </div>
 
+            {/* Waiting Status */}
             {isWaiting && (
               <div
                 className="
                   inline-flex
                   items-center
                   gap-2
-                  px-4
-                  py-2
+                  px-3
+                  py-1.5
                   rounded-full
                   bg-amber-500/10
                   border
-                  border-amber-500/30
+                  border-amber-500/20
                   text-amber-300
                   text-xs
-                  sm:text-sm
                   animate-pulse
                 "
               >
                 <span>⏳</span>
-                Waiting Update
+
+                <span>
+                  Waiting Update
+                </span>
               </div>
             )}
+
           </div>
+
         </div>
       </div>
+
     </header>
   );
 }
