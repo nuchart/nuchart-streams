@@ -1,16 +1,48 @@
 import Image from "next/image";
 
+const collabCovers = {
+  "Aku Yang Salah": "/covers/aku-yang-salah.jpg",
+  "Janji Kita": "/covers/janji-kita.jpg",
+  "Meant 2 Be": "/covers/meant-2-be.jpg",
+  "Meant 2 Be ( Stripped Version)": "/covers/meant-2-be-stripped.jpg",
+  "Benih": "/covers/benih.jpg",
+  "Taklukkan Takut": "/covers/taklukkan-takut.jpg",
+  "Taklukkan Takut (Accoustic)": "/covers/taklukkan-takut.jpg",
+};
+
+function TrendDot({ trend }) {
+  const value = trend?.toUpperCase();
+
+  if (value === "UP") {
+    return (
+      <span className="block w-2 h-2 rounded-full bg-green-500" />
+    );
+  }
+
+  if (value === "DOWN") {
+    return (
+      <span className="block w-2 h-2 rounded-full bg-red-500" />
+    );
+  }
+
+  return (
+    <span className="block w-2 h-2 rounded-full bg-zinc-500" />
+  );
+}
+
 export default function CollabsTable({
-  topCollabs,
-  data,
-  formatNumber,
-  TrendDot,
-  collabCovers,
+  dashboard,
 }) {
+  const tracks =
+    dashboard?.catalogs?.collaborations?.tracks ?? [];
+
   return (
     <div>
+
       {/* TITLE */}
+
       <div className="mb-5">
+
         <h2 className="text-xl font-bold tracking-tight">
           Daily Streams Collaborations
         </h2>
@@ -18,9 +50,11 @@ export default function CollabsTable({
         <p className="text-sm text-zinc-500 mt-1">
           Collaboration Tracks Performance
         </p>
+
       </div>
 
       {/* TABLE */}
+
       <div
         className="
         bg-zinc-900/20
@@ -29,10 +63,11 @@ export default function CollabsTable({
         overflow-hidden
         "
       >
+
         <table className="w-full table-fixed text-sm">
 
-          {/* HEADER */}
           <thead>
+
             <tr className="border-b border-zinc-800/60">
 
               <th
@@ -40,11 +75,15 @@ export default function CollabsTable({
                 px-3
                 md:px-4
                 py-3
+
                 text-left
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -62,10 +101,13 @@ export default function CollabsTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -83,10 +125,13 @@ export default function CollabsTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -95,15 +140,18 @@ export default function CollabsTable({
               </th>
 
             </tr>
+
           </thead>
 
-          {/* BODY */}
           <tbody>
-            {topCollabs.map((row, index) => (
+
+            {tracks.map((track) => (
+
               <tr
-                key={index}
+                key={track.track}
                 className="
                 group
+
                 border-b
                 border-zinc-800/40
 
@@ -115,7 +163,7 @@ export default function CollabsTable({
                 hover:to-transparent
                 "
               >
-                {/* TRACK */}
+
                 <td
                   className="
                   px-3
@@ -123,14 +171,15 @@ export default function CollabsTable({
                   py-3
                   "
                 >
+
                   <div className="flex items-center gap-2.5">
 
                     <Image
                       src={
-                        collabCovers[data[row]?.[9]] ||
+                        collabCovers[track.track] ??
                         "/covers/collab.jpg"
                       }
-                      alt={data[row]?.[9]}
+                      alt={track.track}
                       width={32}
                       height={32}
                       className="
@@ -144,42 +193,39 @@ export default function CollabsTable({
                       duration-300
 
                       group-hover:scale-105
-                      group-hover:border-zinc-600
                       "
                     />
 
-                    <div className="min-w-0 max-w-[140px] sm:max-w-none">
+                    <div className="min-w-0">
 
                       <p
                         className="
                         truncate
+
                         text-sm
                         md:text-[15px]
+
                         font-medium
                         text-white
-
-                        transition-colors
-                        duration-300
-
-                        group-hover:text-zinc-100
                         "
-                        title={data[row]?.[9]}
+                        title={track.track}
                       >
-                        {data[row]?.[9]}
+                        {track.track}
                       </p>
 
                     </div>
 
                   </div>
+
                 </td>
 
-                {/* STREAMS */}
                 <td
                   className="
                   px-2
                   py-3
 
                   text-right
+
                   text-xs
                   sm:text-sm
 
@@ -187,13 +233,11 @@ export default function CollabsTable({
                   text-zinc-300
 
                   whitespace-nowrap
-                  tabular-nums
                   "
                 >
-                  {formatNumber(data[row]?.[10])}
+                  {track.total.text}
                 </td>
 
-                {/* DAILY */}
                 <td
                   className="
                   py-3
@@ -201,6 +245,7 @@ export default function CollabsTable({
                   md:pr-4
                   "
                 >
+
                   <div
                     className="
                     flex
@@ -209,41 +254,41 @@ export default function CollabsTable({
                     gap-1.5
                     "
                   >
+
                     <span
                       className="
-                      text-right
-                      font-medium
-                      text-zinc-300
-
                       text-xs
                       sm:text-sm
 
-                      tabular-nums
+                      font-medium
+                      text-zinc-300
+
                       whitespace-nowrap
                       "
                     >
-                      {formatNumber(data[row]?.[11])}
+                      {track.daily.text}
                     </span>
 
-                    <span
-                      className="
-                      w-3
-                      flex
-                      justify-center
-                      shrink-0
-                      "
-                    >
-                      {TrendDot(data[row]?.[12])}
+                    <span className="w-3 flex justify-center">
+
+                      <TrendDot trend={track.daily.trend} />
+
                     </span>
+
                   </div>
+
                 </td>
 
               </tr>
+
             ))}
+
           </tbody>
 
         </table>
+
       </div>
+
     </div>
   );
 }

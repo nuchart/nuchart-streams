@@ -1,16 +1,47 @@
 import Image from "next/image";
 
+const singleCovers = {
+  "Crolatte 2.0": "/covers/crolatte.jpg",
+  "Hilang": "/covers/hilang.jpg",
+  "Sekarang, Esok, Selamanya":
+    "/covers/sekarang-esok-selamanya.jpg",
+  "Kagum": "/covers/kagum.jpg",
+  "Perisai": "/covers/perisai.jpg",
+  "Perisai (Acoustic)": "/covers/perisai-accoustic.jpg",
+  "Lost Stars": "/covers/lost-stars.jpg",
+};
+
+function TrendDot({ trend }) {
+  const value = trend?.toUpperCase();
+
+  if (value === "UP") {
+    return (
+      <span className="block w-2 h-2 rounded-full bg-green-500" />
+    );
+  }
+
+  if (value === "DOWN") {
+    return (
+      <span className="block w-2 h-2 rounded-full bg-red-500" />
+    );
+  }
+
+  return (
+    <span className="block w-2 h-2 rounded-full bg-zinc-500" />
+  );
+}
+
 export default function SingelTable({
-  topSingel,
-  data,
-  formatNumber,
-  TrendDot,
-  singleCovers,
+  dashboard,
 }) {
+  const tracks =
+    dashboard?.catalogs?.singles?.tracks ?? [];
+
   return (
     <div>
       {/* TITLE */}
       <div className="mb-5">
+
         <h2 className="text-xl font-bold tracking-tight">
           Daily Streams Singles
         </h2>
@@ -18,6 +49,7 @@ export default function SingelTable({
         <p className="text-sm text-zinc-500 mt-1">
           Single Tracks Performance
         </p>
+
       </div>
 
       {/* TABLE */}
@@ -29,10 +61,12 @@ export default function SingelTable({
         overflow-hidden
         "
       >
+
         <table className="w-full table-fixed text-sm">
 
           {/* HEADER */}
           <thead>
+
             <tr className="border-b border-zinc-800/60">
 
               <th
@@ -40,11 +74,15 @@ export default function SingelTable({
                 px-3
                 md:px-4
                 py-3
+
                 text-left
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -62,10 +100,13 @@ export default function SingelTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -83,10 +124,13 @@ export default function SingelTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -95,15 +139,19 @@ export default function SingelTable({
               </th>
 
             </tr>
+
           </thead>
 
           {/* BODY */}
           <tbody>
-            {topSingel.map((row, index) => (
+
+            {tracks.map((track) => (
+
               <tr
-                key={index}
+                key={track.track}
                 className="
                 group
+
                 border-b
                 border-zinc-800/40
 
@@ -115,6 +163,7 @@ export default function SingelTable({
                 hover:to-transparent
                 "
               >
+
                 {/* TRACK */}
                 <td
                   className="
@@ -123,14 +172,15 @@ export default function SingelTable({
                   py-3
                   "
                 >
+
                   <div className="flex items-center gap-2.5">
 
                     <Image
                       src={
-                        singleCovers[data[row]?.[5]] ||
+                        singleCovers[track.track] ??
                         "/covers/singel.jpg"
                       }
-                      alt={data[row]?.[5]}
+                      alt={track.track}
                       width={32}
                       height={32}
                       className="
@@ -144,33 +194,30 @@ export default function SingelTable({
                       duration-300
 
                       group-hover:scale-105
-                      group-hover:border-zinc-600
                       "
                     />
 
-                    <div className="min-w-0 max-w-[140px] sm:max-w-none">
+                    <div className="min-w-0">
 
                       <p
                         className="
                         truncate
+
                         text-sm
                         md:text-[15px]
+
                         font-medium
                         text-white
-
-                        transition-colors
-                        duration-300
-
-                        group-hover:text-zinc-100
                         "
-                        title={data[row]?.[5]}
+                        title={track.track}
                       >
-                        {data[row]?.[5]}
+                        {track.track}
                       </p>
 
                     </div>
 
                   </div>
+
                 </td>
 
                 {/* STREAMS */}
@@ -180,6 +227,7 @@ export default function SingelTable({
                   py-3
 
                   text-right
+
                   text-xs
                   sm:text-sm
 
@@ -187,10 +235,9 @@ export default function SingelTable({
                   text-zinc-300
 
                   whitespace-nowrap
-                  tabular-nums
                   "
                 >
-                  {formatNumber(data[row]?.[6])}
+                  {track.total.text}
                 </td>
 
                 {/* DAILY */}
@@ -201,6 +248,7 @@ export default function SingelTable({
                   md:pr-4
                   "
                 >
+
                   <div
                     className="
                     flex
@@ -209,41 +257,41 @@ export default function SingelTable({
                     gap-1.5
                     "
                   >
+
                     <span
                       className="
-                      text-right
-                      font-medium
-                      text-zinc-300
-
                       text-xs
                       sm:text-sm
 
-                      tabular-nums
+                      font-medium
+                      text-zinc-300
+
                       whitespace-nowrap
                       "
                     >
-                      {formatNumber(data[row]?.[7])}
+                      {track.daily.text}
                     </span>
 
-                    <span
-                      className="
-                      w-3
-                      flex
-                      justify-center
-                      shrink-0
-                      "
-                    >
-                      {TrendDot(data[row]?.[8])}
+                    <span className="w-3 flex justify-center">
+
+                      <TrendDot trend={track.daily.trend} />
+
                     </span>
+
                   </div>
+
                 </td>
 
               </tr>
+
             ))}
+
           </tbody>
 
         </table>
+
       </div>
+
     </div>
   );
 }

@@ -1,14 +1,15 @@
 import Image from "next/image";
+import DatePicker from "./UI/DatePicker";
 
 export default function Header({
-  lastUpdate,
-  updateStatus,
+  dashboard,
+  selectedDate,
+  onDateChange,
+  refreshing,
 }) {
-  const isWaiting =
-    updateStatus?.toString().toLowerCase().includes("waiting");
-
   return (
     <header className="relative overflow-hidden">
+
       {/* Banner */}
       <Image
         src="/banner/nucat.jpg"
@@ -18,11 +19,11 @@ export default function Header({
         priority
         className="
           w-full
-          h-[240px]
-          sm:h-[320px]
-          md:h-[420px]
-          lg:h-[500px]
-          xl:h-[560px]
+          h-[260px]
+          sm:h-[340px]
+          md:h-[430px]
+          lg:h-[520px]
+          xl:h-[580px]
 
           object-cover
           object-center
@@ -30,134 +31,118 @@ export default function Header({
           md:object-[center_25%]
           lg:object-[center_18%]
           xl:object-[center_15%]
-
-          scale-105
-          lg:scale-100
-
-          transition-all
-          duration-500
         "
       />
 
       {/* Overlay */}
-      <div
-        className="
-          absolute
-          inset-0
-          bg-gradient-to-t
-          from-black
-          via-black/60
-          to-black/20
-        "
-      />
+      <div className="absolute inset-0 bg-black/25" />
 
-      {/* Bottom Fade */}
-      <div
-        className="
-          absolute
-          bottom-0
-          left-0
-          right-0
-          h-32
-          md:h-40
-          bg-gradient-to-t
-          from-black
-          to-transparent
-        "
-      />
-
-      {/* Content */}
+      {/* Bottom Gradient */}
       <div
         className="
           absolute
           inset-x-0
           bottom-0
-          pb-5
-          md:pb-8
-          lg:pb-10
+          h-44
+          bg-gradient-to-t
+          from-black
+          via-black/80
+          to-transparent
         "
-      >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      />
 
-          {/* Title */}
-          <h1
-            className="
-              text-3xl
-              sm:text-4xl
-              md:text-5xl
-              lg:text-6xl
-              font-black
-              leading-none
-              tracking-tight
-              text-white
-            "
-          >
-            NUCHART STREAMS
-          </h1>
+      {/* Content */}
+      <div className="absolute inset-0 flex items-end">
 
-          {/* Subtitle */}
-          <p
-            className="
-              mt-2
-              text-sm
-              md:text-base
-              text-zinc-300
-            "
-          >
-            Spotify Statistics Dashboard
-          </p>
+        <div
+          className="
+            w-full
+            max-w-7xl
+            mx-auto
 
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-2 mt-4">
+            px-4
+            md:px-6
+            lg:px-8
 
-            {/* Last Update */}
-            <div
+            pb-6
+            md:pb-8
+            lg:pb-10
+          "
+        >
+
+          <div className="max-w-3xl">
+
+            {/* Title */}
+
+            <h1
               className="
-                inline-flex
-                items-center
-                gap-2
-                px-3
-                py-1.5
-                rounded-full
-                bg-zinc-900/40
-                backdrop-blur-sm
-                border
-                border-zinc-800
-                text-xs
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                lg:text-6xl
+
+                font-black
+                leading-none
+                tracking-tight
+
+                text-white
+              "
+            >
+              NUCHART STREAMS
+            </h1>
+
+            {/* Subtitle */}
+
+            <p
+              className="
+                mt-3
+
+                text-sm
+                md:text-base
+
                 text-zinc-300
               "
             >
-              <span className="w-2 h-2 rounded-full bg-green-500" />
-              <span>{lastUpdate}</span>
+              Spotify Statistics Dashboard
+            </p>
+
+            {/* Date Picker */}
+
+            <div className="mt-6 max-w-[240px]">
+
+              <DatePicker
+                value={selectedDate}
+                onChange={onDateChange}
+                minDate="14/06/2026"
+                maxDate={dashboard.lastUpdate}
+              />
+
             </div>
 
-            {/* Waiting Status */}
-            {isWaiting && (
-              <div
+            {/* Loading */}
+
+            {refreshing && (
+
+              <p
                 className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  px-3
-                  py-1.5
-                  rounded-full
-                  bg-amber-500/10
-                  border
-                  border-amber-500/20
-                  text-amber-300
-                  text-xs
-                  animate-pulse
+                  mt-3
+
+                  text-sm
+
+                  text-blue-400
                 "
               >
-                <span>⏳</span>
-                <span>Waiting Update</span>
-              </div>
+                Updating data...
+              </p>
+
             )}
 
           </div>
 
         </div>
+
       </div>
+
     </header>
   );
 }

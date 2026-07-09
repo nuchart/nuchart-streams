@@ -1,32 +1,32 @@
 import Image from "next/image";
 
 export default function CatalogCards({
-  totalEunoia,
-  dailyEunoia,
-  totalSingel,
-  dailySingel,
-  totalCollabs,
-  dailyCollabs,
-  formatNumber,
+  dashboard,
 }) {
   const catalogs = [
     {
       title: "Eunoia",
       cover: "/covers/eunoia.jpg",
-      total: totalEunoia,
-      daily: dailyEunoia,
+      total:
+        dashboard?.catalogs?.eunoia?.summary?.totalStreams?.text ?? "-",
+      daily:
+        dashboard?.catalogs?.eunoia?.summary?.dailyStreams?.text ?? "-",
     },
     {
       title: "Singles",
       cover: "/covers/singel.jpg",
-      total: totalSingel,
-      daily: dailySingel,
+      total:
+        dashboard?.catalogs?.singles?.summary?.totalStreams?.text ?? "-",
+      daily:
+        dashboard?.catalogs?.singles?.summary?.dailyStreams?.text ?? "-",
     },
     {
       title: "Collaborations",
       cover: "/covers/collab.jpg",
-      total: totalCollabs,
-      daily: dailyCollabs,
+      total:
+        dashboard?.catalogs?.collaborations?.summary?.totalStreams?.text ?? "-",
+      daily:
+        dashboard?.catalogs?.collaborations?.summary?.dailyStreams?.text ?? "-",
     },
   ];
 
@@ -150,7 +150,7 @@ export default function CatalogCards({
                   group-hover:text-white
                   "
                 >
-                  {formatNumber(item.total)}
+                  {item.total}
                 </h3>
 
                 <div
@@ -176,7 +176,7 @@ export default function CatalogCards({
                   group-hover:bg-zinc-700
                   "
                 >
-                  🔥 {formatNumber(item.daily)}
+                  🔥 {item.daily}
                 </div>
 
               </div>

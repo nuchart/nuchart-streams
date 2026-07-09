@@ -1,15 +1,37 @@
 import Image from "next/image";
 
 export default function EunoiaTable({
-  topEunoia,
-  data,
-  formatNumber,
-  TrendDot,
+  dashboard,
 }) {
+  const tracks = dashboard?.catalogs?.eunoia?.tracks ?? [];
+
+  const TrendDot = (trend) => {
+    const value = trend?.toUpperCase();
+
+    if (value === "UP") {
+      return (
+        <span className="block w-2 h-2 rounded-full bg-green-500" />
+      );
+    }
+
+    if (value === "DOWN") {
+      return (
+        <span className="block w-2 h-2 rounded-full bg-red-500" />
+      );
+    }
+
+    return (
+      <span className="block w-2 h-2 rounded-full bg-zinc-500" />
+    );
+  };
+
   return (
     <div>
+
       {/* TITLE */}
+
       <div className="mb-5">
+
         <h2 className="text-xl font-bold tracking-tight">
           Daily Streams Eunoia
         </h2>
@@ -17,9 +39,11 @@ export default function EunoiaTable({
         <p className="text-sm text-zinc-500 mt-1">
           Album Tracks Performance
         </p>
+
       </div>
 
       {/* TABLE */}
+
       <div
         className="
         bg-zinc-900/20
@@ -28,10 +52,11 @@ export default function EunoiaTable({
         overflow-hidden
         "
       >
+
         <table className="w-full table-fixed text-sm">
 
-          {/* HEADER */}
           <thead>
+
             <tr className="border-b border-zinc-800/60">
 
               <th
@@ -39,11 +64,15 @@ export default function EunoiaTable({
                 px-3
                 md:px-4
                 py-3
+
                 text-left
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -61,10 +90,13 @@ export default function EunoiaTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -82,10 +114,13 @@ export default function EunoiaTable({
                 py-3
 
                 text-right
+
                 text-[10px]
                 md:text-[11px]
+
                 uppercase
                 tracking-[3px]
+
                 text-zinc-500
                 font-semibold
                 "
@@ -94,15 +129,18 @@ export default function EunoiaTable({
               </th>
 
             </tr>
+
           </thead>
 
-          {/* BODY */}
           <tbody>
-            {topEunoia.map((row, index) => (
+
+            {tracks.map((track) => (
+
               <tr
-                key={index}
+                key={track.track}
                 className="
                 group
+
                 border-b
                 border-zinc-800/40
 
@@ -114,7 +152,9 @@ export default function EunoiaTable({
                 hover:to-transparent
                 "
               >
+
                 {/* TRACK */}
+
                 <td
                   className="
                   px-3
@@ -122,6 +162,7 @@ export default function EunoiaTable({
                   py-3
                   "
                 >
+
                   <div className="flex items-center gap-2.5">
 
                     <Image
@@ -140,42 +181,41 @@ export default function EunoiaTable({
                       duration-300
 
                       group-hover:scale-105
-                      group-hover:border-zinc-600
                       "
                     />
 
-                    <div className="min-w-0 max-w-[140px] sm:max-w-none">
+                    <div className="min-w-0">
 
                       <p
                         className="
                         truncate
+
                         text-sm
                         md:text-[15px]
+
                         font-medium
                         text-white
-
-                        transition-colors
-                        duration-300
-
-                        group-hover:text-zinc-100
                         "
-                        title={data[row]?.[5]}
+                        title={track.track}
                       >
-                        {data[row]?.[5]}
+                        {track.track}
                       </p>
 
                     </div>
 
                   </div>
+
                 </td>
 
                 {/* STREAMS */}
+
                 <td
                   className="
                   px-2
                   py-3
 
                   text-right
+
                   text-xs
                   sm:text-sm
 
@@ -183,63 +223,64 @@ export default function EunoiaTable({
                   text-zinc-300
 
                   whitespace-nowrap
-                  tabular-nums
                   "
                 >
-                  {formatNumber(data[row]?.[6])}
+                  {track.total.text}
                 </td>
 
                 {/* DAILY */}
-<td
-  className="
-  py-3
-  pr-3
-  md:pr-4
-  "
->
-  <div
-    className="
-    flex
-    items-center
-    justify-end
-    gap-1.5
-    "
-  >
-    <span
-      className="
-      text-right
-      font-medium
-      text-zinc-300
 
-      text-xs
-      sm:text-sm
+                <td
+                  className="
+                  py-3
+                  pr-3
+                  md:pr-4
+                  "
+                >
 
-      tabular-nums
-      whitespace-nowrap
-      "
-    >
-      {formatNumber(data[row]?.[7])}
-    </span>
+                  <div
+                    className="
+                    flex
+                    items-center
+                    justify-end
+                    gap-1.5
+                    "
+                  >
 
-    <span
-      className="
-      w-3
-      flex
-      justify-center
-      shrink-0
-      "
-    >
-      {TrendDot(data[row]?.[8])}
-    </span>
-  </div>
-</td>
+                    <span
+                      className="
+                      text-xs
+                      sm:text-sm
+
+                      font-medium
+                      text-zinc-300
+
+                      whitespace-nowrap
+                      "
+                    >
+                      {track.daily.text}
+                    </span>
+
+                    <span className="w-3 flex justify-center">
+
+                      {TrendDot(track.daily.trend)}
+
+                    </span>
+
+                  </div>
+
+                </td>
 
               </tr>
+
             ))}
+
           </tbody>
 
         </table>
+
       </div>
+
     </div>
   );
 }
