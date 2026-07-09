@@ -34,8 +34,14 @@ function TrendDot({ trend }) {
 export default function SingelTable({
   dashboard,
 }) {
-  const tracks =
-    dashboard?.catalogs?.singles?.tracks ?? [];
+
+  {/* Urut data Default
+  const tracks = dashboard?.catalogs?.singles?.tracks ?? [];
+  */}
+
+  const tracks = [...(dashboard?.catalogs?.singles?.tracks ?? [])].sort(
+    (a, b) => b.daily.value - a.daily.value
+  );
 
   return (
     <div>

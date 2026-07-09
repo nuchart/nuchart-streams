@@ -108,13 +108,23 @@ export default function Header({
 
             {/* Date Picker */}
 
-            <div className="mt-6 max-w-[240px]">
+            <div
+              className="
+                mt-5
+
+                w-[165px]
+                sm:w-[190px]
+                md:w-[220px]
+                lg:w-[240px]
+              "
+            >
 
               <DatePicker
                 value={selectedDate}
                 onChange={onDateChange}
                 minDate="14/06/2026"
                 maxDate={dashboard.lastUpdate}
+                updateStatus={dashboard.updateStatus}
               />
 
             </div>

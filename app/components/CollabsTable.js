@@ -33,9 +33,15 @@ function TrendDot({ trend }) {
 export default function CollabsTable({
   dashboard,
 }) {
-  const tracks =
-    dashboard?.catalogs?.collaborations?.tracks ?? [];
 
+  {/* Urut data Default
+  const tracks = dashboard?.catalogs?.collaborations?.tracks ?? [];
+  */}
+
+  const tracks = [...(dashboard?.catalogs?.collaborations?.tracks ?? [])].sort(
+    (a, b) => b.daily.value - a.daily.value
+  );
+  
   return (
     <div>
 

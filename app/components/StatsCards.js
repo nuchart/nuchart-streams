@@ -5,7 +5,7 @@ export default function StatsCards({
 }) {
   const stats = [
     {
-      title: "Monthly Listeners",
+      title: "Listeners",
       value:
         dashboard?.overview?.monthlyListeners?.total?.text ?? "-",
       daily:

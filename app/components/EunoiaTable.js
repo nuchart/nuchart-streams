@@ -3,8 +3,15 @@ import Image from "next/image";
 export default function EunoiaTable({
   dashboard,
 }) {
-  const tracks = dashboard?.catalogs?.eunoia?.tracks ?? [];
 
+  {/* Urut data Default
+  const tracks = dashboard?.catalogs?.eunoia?.tracks ?? [];
+  */}
+
+  const tracks = [...(dashboard?.catalogs?.eunoia?.tracks ?? [])].sort(
+    (a, b) => b.daily.value - a.daily.value
+  );
+  
   const TrendDot = (trend) => {
     const value = trend?.toUpperCase();
 
