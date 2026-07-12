@@ -10,7 +10,7 @@ import EunoiaTable from "./components/EunoiaTable";
 import SingelTable from "./components/SingelTable";
 import CollabsTable from "./components/CollabsTable";
 
-import { getDashboardData } from "../lib/sheets";
+import { getDashboardData } from "../lib/api";
 
 export default function Dashboard({
   initialData,

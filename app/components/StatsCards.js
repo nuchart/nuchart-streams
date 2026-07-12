@@ -5,7 +5,7 @@ export default function StatsCards({
 }) {
   const stats = [
     {
-      title: "Listeners",
+      title: "Monthly Listeners",
       value:
         dashboard?.overview?.monthlyListeners?.total?.text ?? "-",
       daily:
@@ -34,6 +34,13 @@ export default function StatsCards({
       title: "Daily Streams",
       value:
         dashboard?.overview?.catalog?.dailyStreams?.text ?? "-",
+
+      daily:
+        dashboard?.overview?.catalog?.dailyStreams?.difference?.text ?? "-",
+
+      trend:
+        dashboard?.overview?.catalog?.dailyStreams?.trend ?? "same",
+
       icon: "🔥",
     },
   ];

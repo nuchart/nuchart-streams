@@ -1,34 +1,93 @@
 import Image from "next/image";
+import {
+  TrendingUp,
+  TrendingDown,
+  Minus,
+} from "lucide-react";
 
 export default function CatalogCards({
   dashboard,
 }) {
   const catalogs = [
-    {
-      title: "Eunoia",
-      cover: "/covers/eunoia.jpg",
-      total:
-        dashboard?.catalogs?.eunoia?.summary?.totalStreams?.text ?? "-",
-      daily:
-        dashboard?.catalogs?.eunoia?.summary?.dailyStreams?.text ?? "-",
-    },
-    {
-      title: "Singles",
-      cover: "/covers/singel.jpg",
-      total:
-        dashboard?.catalogs?.singles?.summary?.totalStreams?.text ?? "-",
-      daily:
-        dashboard?.catalogs?.singles?.summary?.dailyStreams?.text ?? "-",
-    },
-    {
-      title: "Collaborations",
-      cover: "/covers/collab.jpg",
-      total:
-        dashboard?.catalogs?.collaborations?.summary?.totalStreams?.text ?? "-",
-      daily:
-        dashboard?.catalogs?.collaborations?.summary?.dailyStreams?.text ?? "-",
-    },
-  ];
+  {
+    title: "Eunoia",
+    cover: "/covers/eunoia.jpg",
+
+    total:
+      dashboard?.catalogs?.eunoia?.summary?.totalStreams?.text ?? "-",
+
+    today:
+      dashboard?.catalogs?.eunoia?.summary?.dailyStreams?.text ?? "-",
+
+    difference:
+      dashboard?.catalogs?.eunoia?.summary?.dailyStreams?.difference?.text ?? "-",
+
+    trend:
+      dashboard?.catalogs?.eunoia?.summary?.dailyStreams?.trend ?? "same",
+  },
+
+  {
+    title: "Singles",
+    cover: "/covers/singel.jpg",
+
+    total:
+      dashboard?.catalogs?.singles?.summary?.totalStreams?.text ?? "-",
+
+    today:
+      dashboard?.catalogs?.singles?.summary?.dailyStreams?.text ?? "-",
+
+    difference:
+      dashboard?.catalogs?.singles?.summary?.dailyStreams?.difference?.text ?? "-",
+
+    trend:
+      dashboard?.catalogs?.singles?.summary?.dailyStreams?.trend ?? "same",
+  },
+
+  {
+    title: "Collaborations",
+    cover: "/covers/collab.jpg",
+
+    total:
+      dashboard?.catalogs?.collaborations?.summary?.totalStreams?.text ?? "-",
+
+    today:
+      dashboard?.catalogs?.collaborations?.summary?.dailyStreams?.text ?? "-",
+
+    difference:
+      dashboard?.catalogs?.collaborations?.summary?.dailyStreams?.difference?.text ?? "-",
+
+    trend:
+      dashboard?.catalogs?.collaborations?.summary?.dailyStreams?.trend ?? "same",
+  },
+];
+
+const TrendIcon = ({ trend }) => {
+  switch (trend?.toLowerCase()) {
+    case "up":
+      return (
+        <TrendingUp
+          size={13}
+          className="text-green-400"
+        />
+      );
+
+    case "down":
+      return (
+        <TrendingDown
+          size={13}
+          className="text-red-400"
+        />
+      );
+
+    default:
+      return (
+        <Minus
+          size={13}
+          className="text-zinc-400"
+        />
+      );
+  }
+};
 
   return (
     <>
@@ -106,8 +165,8 @@ export default function CatalogCards({
               <Image
                 src={item.cover}
                 alt={item.title}
-                width={55}
-                height={55}
+                width={70}
+                height={70}
                 className="
                 rounded-lg
                 border
@@ -155,28 +214,72 @@ export default function CatalogCards({
 
                 <div
                   className="
-                  inline-flex
-                  items-center
-                  gap-1
-                  mt-1.5
+                    mt-2
 
-                  px-2
-                  py-0.5
-
-                  rounded-full
-
-                  bg-zinc-800/80
-
-                  text-[10px]
-                  text-zinc-300
-
-                  transition-all
-                  duration-300
-
-                  group-hover:bg-zinc-700
+                    flex
+                    items-center
+                    gap-3
                   "
                 >
-                  🔥 {item.daily}
+
+                  {/* Daily Today */}
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-1.5
+                    "
+                  >
+
+
+                    <span
+                      className="
+                        text-[13px]
+                        md:text-[14px]
+                        font-bold
+                        text-zinc-200
+                        tracking-tight
+                      "
+                    >
+                      {item.today}
+                    </span>
+                  </div>
+
+                  {/* Daily Trend */}
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-1
+                    "
+                  >
+
+                    <TrendIcon trend={item.trend} />
+
+                    <span
+                      className={`
+
+                        text-[11px]
+                        font-semibold
+
+                        ${
+                          item.trend === "up"
+                            ? "text-green-400"
+                            : item.trend === "down"
+                            ? "text-red-400"
+                            : "text-zinc-400"
+                        }
+
+                      `}
+                    >
+                      {item.trend === "up" ? "+" : ""}
+                      {item.difference}
+                    </span>
+
+                  </div>
+
                 </div>
 
               </div>
